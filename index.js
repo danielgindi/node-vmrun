@@ -23,7 +23,7 @@ if (/^win/.test(process.platform)) {
     };
 }
 
-/** @enum {VMWareHostType} */
+/** @enum {String} VMWareHostType */
 var VMWareHostType = {
     SERVER1: 'server1'
     , SERVER2: 'server'
@@ -110,10 +110,23 @@ VMRun.prototype.setOptions = function (options) {
     return this;
 };
 
+/**
+ * @typedef {Object} VMRunOptions
+ * @property {String|undefined} hostName?
+ * @property {String|Number|undefined} hostPort?
+ * @property {VMWareHostType|undefined} hostType?
+ * @property {String|undefined} hostUsername?
+ * @property {String|undefined} hostPassword?
+ * @property {String|undefined} guestUsername?
+ * @property {String|undefined} guestPassword?
+ * @property {String|undefined} vmPassword?
+ *
+ */
+
 //noinspection JSUnusedGlobalSymbols
 /**
  * Returns a new VMRun instance with different options
- * @param options
+ * @param {VMRunOptions?} options
  * @returns {VMRun} new VMRun instance
  */
 VMRun.prototype.withOptions = function (options) {
@@ -124,7 +137,7 @@ VMRun.prototype.withOptions = function (options) {
 //noinspection JSUnusedGlobalSymbols
 /**
  * Returns a new VMRun instance with different options, inheriting from current options
- * @param options
+ * @param {VMRunOptions?} options
  * @returns {VMRun} new VMRun instance
  */
 VMRun.prototype.withModifiedOptions = function (options) {
@@ -136,7 +149,7 @@ VMRun.prototype.withModifiedOptions = function (options) {
  * Call a VMRun command
  * @param {String} command
  * @param {[String]?} args
- * @param {Object} options
+ * @param {VMRunOptions?} options
  * @returns {Promise<{stdout, stderr}>}
  */
 VMRun.vmrunWithOptions = function (command, args, options) {

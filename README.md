@@ -1,6 +1,6 @@
-# vmrun.js
+# vmrun
 
-[![npm Version](https://badge.fury.io/js/vmrun.js.png)](https://npmjs.org/package/vmrun.js)
+[![npm Version](https://badge.fury.io/js/vmrun.png)](https://npmjs.org/package/vmrun)
 
 A wrapper for VMWare CLI (vmrun) with Promises,
 
@@ -14,14 +14,14 @@ A wrapper for VMWare CLI (vmrun) with Promises,
 ## Installation:
 
 ```
-npm install --save vmrun.js
+npm install --save vmrun
 ```
 
 ## Usage example:
 
 ```javascript
 
-var VMRun = require('vmrun.js');
+var VMRun = require('vmrun');
 
 VMRun.setOptions({
     hostType: 'ws' // Workstation
@@ -44,7 +44,7 @@ Another way of setting options for controlling the vms, is using `VMRun.withOpti
 or using `VMRun.withModifiedOptions(options)` to get a new VMRun instance with the new options inheriting from the current options.
 
 ```
-var VMRun = require('vmrun.js')
+var VMRun = require('vmrun')
     .setOptions({
         hostType: 'ws'
     });

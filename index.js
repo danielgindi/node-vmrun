@@ -179,7 +179,7 @@ VMRun.vmrunWithOptions = function (command, args, options) {
     }
 
     // Command
-    options.push(command);
+    runArgs.push(command);
 
     // Arguments
     if (args) {

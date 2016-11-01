@@ -232,10 +232,19 @@ VMRun.prototype.start = function (vmxFile, gui) {
 /**
  * Hardware shutdown
  * @param {String} vmxFile
- * @returns {Promise.<{stdout, stderr}>}
+ * @returns {Promise.<Boolean>} Promise resolved to whether the machine was on or not
  */
 VMRun.prototype.poweroff = function (vmxFile) {
-    return this.vmrun('stop', [vmxFile, 'hard']);
+    return this.vmrun('stop', [vmxFile, 'hard'])
+        .then(function () {
+            return true;
+        })
+        .catch(function (err) {
+            if (err.message.indexOf('is not powered on')) {
+                return false;
+            }
+            throw err;
+        });
 };
 
 /**

@@ -69,6 +69,7 @@ var extend = function (dest) {
 
     for (var i = 1, len = arguments.length; i < len; i++) {
         var o = arguments[i];
+        if (!o) continue;
 
         for (var key in o) {
             if (!o.hasOwnProperty(key)) continue;

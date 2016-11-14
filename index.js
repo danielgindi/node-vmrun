@@ -80,6 +80,9 @@ var extend = function (dest) {
     return dest;
 };
 
+/**
+ * @constructor
+ */
 var VMRun = function () {};
 
 /**
@@ -234,7 +237,7 @@ VMRun.prototype.start = function (vmxFile, gui) {
  * @param {String} vmxFile
  * @returns {Promise.<Boolean>} Promise resolved to whether the machine was on or not
  */
-VMRun.prototype.poweroff = function (vmxFile) {
+VMRun.prototype.poweroff = VMRun.prototype.powerOff = function (vmxFile) {
     return this.vmrun('stop', [vmxFile, 'hard'])
         .then(function () {
             return true;

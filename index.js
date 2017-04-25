@@ -105,9 +105,13 @@ VMRun.prototype.setOptions = function (options) {
     opts.hostPort = options.hostPort || false;
     opts.hostType = resolveHostType(options.hostType);
     opts.hostUsername = options.hostUsername || false;
-    opts.hostPassword = options.hostPassword || false;
+    opts.hostPassword = (options.hostPassword || typeof options.hostPassword === 'string')
+        ? options.hostPassword
+        : false;
     opts.guestUsername = options.guestUsername || false;
-    opts.guestPassword = options.guestPassword || false;
+    opts.guestPassword = (options.guestPassword || typeof options.guestPassword === 'string')
+        ? options.guestPassword
+        : false;
     opts.vmPassword = options.vmPassword || false;
     this._options = options;
     return this;

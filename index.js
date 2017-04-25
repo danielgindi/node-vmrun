@@ -202,7 +202,9 @@ VMRun.vmrunWithOptions = function (command, args, options) {
         child_process.exec('vmrun' + ' ' + runArgs.join(' '), {}, function (err, stdout, stderr) {
 
             if (err) {
-                err.stderr = stderr;
+                if (/^Error: /.test(stderr || stdout)) {
+                    err.message = ((stderr || stdout).substr(7)).trim() + '\n    cmd: ' + err.cmd;
+                }
                 return reject(err);
             }
 

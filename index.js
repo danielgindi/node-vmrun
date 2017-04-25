@@ -824,10 +824,10 @@ VMRun.prototype.clone = function (vmxFile, newVmxFile, type, snapshotName, clone
     var args = [vmxFile, newVmxFile];
     args.push(type === 'full' ? 'full' : 'linked');
     if (snapshotName) {
-        args.push(snapshotName);
+        args.push('-snapshot=' + snapshotName);
     }
     if (cloneName) {
-        args.push(cloneName);
+        args.push('-cloneName=' + cloneName);
     }
     return this.vmrun('clone', args);
 };

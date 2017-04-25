@@ -9,7 +9,7 @@ if (/^win/.test(process.platform)) {
     escapeArg = function (arg) {
         if (arg === undefined) arg = '';
         arg = arg + '';
-        if (!/\s|[\\"]]/.test(arg) && arg.length > 0 /* escape empty args as "" */) return arg;
+        if (!/\s|[\\"\]]/.test(arg) && arg.length > 0 /* escape empty args as "" */) return arg;
 
         return '"' + arg.replace(/"/g, '"""') + '"';
     };
@@ -17,9 +17,9 @@ if (/^win/.test(process.platform)) {
     escapeArg = function (arg) {
         if (arg === undefined) arg = '';
         arg = arg + '';
-        if (!/\s|[\\"]]/.test(arg) && arg.length > 0 /* escape empty args as "" */) return arg;
+        if (!/\s|[\\"\]]/.test(arg) && arg.length > 0 /* escape empty args as "" */) return arg;
 
-        return arg.replace(/\\/g, '\\\\').replace(/"/g, '\\"');
+        return '"' + arg.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
     };
 }
 

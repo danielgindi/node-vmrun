@@ -23,6 +23,10 @@ if (/^win/.test(process.platform)) {
     };
 }
 
+var cleanStdout = function (stdout) {
+    return stdout.replace(/[\r\n]$/, '');
+};
+
 /** @enum {String} VMWareHostType */
 var VMWareHostType = {
     SERVER1: 'server1'
@@ -591,7 +595,7 @@ VMRun.prototype.createTempfileInGuest = function (vmxFile) {
     return this.vmrun('createTempfileInGuest', [vmxFile])
         .then(function (std) {
             if (std.stdout) {
-                return std.stdout;
+                return cleanStdout(std.stdout);
             }
 
             throw new Error(std.stderr);
@@ -699,7 +703,7 @@ VMRun.prototype.readVariable = function (vmxFile, where, variableName) {
             if (std.stderr) {
                 throw new Error(std.stderr);
             }
-            return std.stdout;
+            return cleanStdout(std.stdout);
         });
 };
 
@@ -713,7 +717,7 @@ VMRun.prototype.getGuestIPAddress = function (vmxFile) {
             if (std.stderr) {
                 throw new Error(std.stderr);
             }
-            return std.stdout;
+            return cleanStdout(std.stdout);
         });
 };
 
@@ -766,7 +770,7 @@ VMRun.prototype.checkToolsState = function (vmxFile) {
             if (std.stderr) {
                 throw new Error(std.stderr);
             }
-            return std.stdout;
+            return cleanStdout(std.stdout);
         });
 };
 

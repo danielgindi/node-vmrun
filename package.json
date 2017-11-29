@@ -1,6 +1,6 @@
 {
   "name": "vmrun",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "A wrapper for VMWare CLI with Promises",
   "main": "index.js",
   "scripts": {

@@ -11,7 +11,7 @@ if (/^win/.test(process.platform)) {
         arg = arg + '';
         if (!/\s|[\\"\]]/.test(arg) && arg.length > 0 /* escape empty args as "" */) return arg;
 
-        return '"' + arg.replace(/"/g, '"""') + '"';
+        return '"' + arg.replace(/"/g, '""') + '"';
     };
 } else {
     escapeArg = function (arg) {
@@ -19,7 +19,7 @@ if (/^win/.test(process.platform)) {
         arg = arg + '';
         if (!/\s|[\\"\]]/.test(arg) && arg.length > 0 /* escape empty args as "" */) return arg;
 
-        return '"' + arg.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+        return '"' + arg.replace(/"/g, '\\"') + '"';
     };
 }
 
